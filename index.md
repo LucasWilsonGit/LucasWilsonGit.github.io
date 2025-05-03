@@ -7,11 +7,14 @@ title: Home
 
 Body message.
 
-# Tags
+### Posts:
 
 {% for post in site.posts %}
 <a href="{{ post.url }}/">{{ post.title }}</a>
 {% endfor %}
+
+# Tags
+
 
 {% capture tags %}
   {% for tag in site.tags %}
