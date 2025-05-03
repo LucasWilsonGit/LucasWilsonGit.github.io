@@ -11,6 +11,7 @@ Body message.
 
 {% capture tags %}
   {% for tag in site.tags %}
+    <p>Debug tag: {{ tag }}</p>
     {{ tag[0] }}
   {% endfor %}
 {% endcapture %}
