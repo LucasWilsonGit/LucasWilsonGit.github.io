@@ -15,7 +15,13 @@ Body message.
     {{ tag[0] }}
   {% endfor %}
 {% endcapture %}
-{% assign sortedtags = tags | split:',' | sort %}
+{% assign sortedtags = tags | split:'|' | sort %}
+
 {% for tag in sortedtags %}
-    <a href="/tags/{{ tag }}/">{{ tag }}</a><br>
+    <h3 id="tag_{{ tag }}">{{ tag }}</h3>
+    <ul>
+    {% for post in site.tags[tag] %}
+        <li><a href="{{ post.url }}/">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
 {% endfor %}
