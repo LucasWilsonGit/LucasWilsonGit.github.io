@@ -22,10 +22,10 @@ Body message.
 {% endcapture %}
 {% assign sortedtags = tags | split:'|' | sort %}
 
-{% for tag in sortedtags %}
-    <h3 id="tag_{{ tag[0] }}">{{ tag[0] }}</h3>
+{% for tagname in sortedtags %}
+    <h3 id="tag_header">{{ tagname }}</h3>
     <ul>
-    {% for post in site.tags[tag] %}
+    {% for post in site.tags[tagname] %}
         <li><a href="{{ post.url }}/">{{ post.title }}</a></li>
     {% endfor %}
     </ul>
