@@ -22,7 +22,7 @@ Body message.
 <ul>
 {% for post in tag[1] %}
 <li><a href="{{ post.url }}">
-{{ post.date | date: "%b %-d{% ordinal: post.date %} %Y" }} - {{ post.title }}
+{{ post.date | date: "%b %d, %Y" }} - {{ post.title }}
 </a></li>
 {% endfor %}
 </ul>
