@@ -3,7 +3,10 @@ layout: blog-post
 author: Lucas Wilson
 title: Hello, world!
 excerpt: My first post.
-tags: ignore|altignore|tag3
+tags: 
+    - ignore
+    - altignore
+    - tag3
 ---
 
 #Hello, world!
