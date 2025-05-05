@@ -3,6 +3,10 @@
 
 @import "theme";
 
+a {
+    color: $text-link;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -11,11 +15,36 @@ body {
     color: $text;
     display: flex;
     height: 100%;
+
+    a {
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: $accent;
+        }
+    }
+
+    .post-item {
+        a {
+            font-size: 1.5rem;
+        }
+
+        .post-meta {
+            font-size: .6rem;
+            margin: 0;
+
+            a {
+                text-decoration: underline;
+                font-size: .6rem;
+            }
+        }
+    }
 }
   
 .sidebar {
     width: 220px;
-    height: calc(100vh - 1.5rem);
+    height: calc(100vh);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,6 +52,57 @@ body {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     padding: 1.5rem;
     padding-bottom: 0;
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        
+        .github-profile {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        
+            .github-link {
+                display: inline-block;
+                margin-right: 0.5rem;
+                color: $text-link;
+                transition: color 0.2s ease-in-out;
+        
+                &:hover {
+                color: $accent;
+                }
+            }
+        
+            img.github-avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%; // Makes the avatar round
+                margin-right: 0.5rem; // Space between the avatar and name
+                object-fit: cover; // Ensures the image doesn't stretch
+            }
+    
+            .github-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                line-height: 1.2;
+        
+                .github-name {
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: $text;
+                }
+            
+                .github-title {
+                    font-size: 0.75rem;
+                    color: $muted;
+                    margin-top: 0.15rem;
+                }
+            }
+
+
+        }
+      }
 
     h1 {
       font-size: 1.1rem;

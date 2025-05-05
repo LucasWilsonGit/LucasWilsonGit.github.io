@@ -1,5 +1,5 @@
 ---
-layout: blog-post
+layout: blog_post
 author: Lucas Wilson
 title: Hello, world!
 excerpt: My first post.
