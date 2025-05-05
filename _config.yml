@@ -1,2 +1,6 @@
 title: LucasWilsonGit
-#baseurl: "/home/lwilson/Development/jekyll/LucasWilsonGit.github.io/_site"
+sass:
+  load_paths:
+    - assets/css
+    - _sass
+baseurl: ""#/home/lwilson/Development/jekyll/LucasWilsonGit.github.io/_site"
