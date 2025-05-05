@@ -10,9 +10,9 @@ Body message.
 
 <h2>Posts:</h2>
 
-{%- for post in site.posts -%}
+{% for post in site.posts %}
 <a href="{{ post.url }}">{{ post.title }}</a>
-{%- endfor -%}
+{% endfor %}
 
 <h2>Tags</h2>
 

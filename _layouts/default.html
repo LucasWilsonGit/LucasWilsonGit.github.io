@@ -3,8 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <title>{{ page.title }}</title>
+        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+
+        <!-- FontAwesome CDN (SVG version) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     </head>
     <body>
-        {{content}}
+
+        <div class="sidebar">
+            <h1>This site is my blog for development projects.</h1>
+
+            <nav>
+                <a href="{{ site.baseurl }}/index.html">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="mailto:lucas.jonathan.wilson+blog@gmail.com">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </nav>
+
+            <footer class="sidebar-footer">
+                &copy; {{ 'now' | date: "%Y" }} Lucas Wilson
+            </footer>
+        </div>
+    
+        <div class="main-content">
+            {{ content }}
+        </div>
     </body>
 </html>

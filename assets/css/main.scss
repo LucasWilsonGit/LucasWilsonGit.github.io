@@ -1,0 +1,62 @@
+---
+---
+
+@import "theme";
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: $background;
+    color: $text;
+    display: flex;
+    height: 100%;
+}
+  
+.sidebar {
+    width: 220px;
+    height: calc(100vh - 1.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $surface;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    padding-bottom: 0;
+
+    h1 {
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: $muted;
+    }
+  
+    nav {
+        flex-grow: 1;
+
+        a {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: $text;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+    
+            &:hover {
+                color: $accent;
+                text-shadow: 0 0 8px $accent;
+            }
+        }
+    }
+
+    .sidebar-footer {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+}
+  
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    padding-bottom: 0;
+}
+
