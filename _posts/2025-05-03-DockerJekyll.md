@@ -137,6 +137,12 @@ Now I can build any dir at will by running `jekyll_build {path}` e.g. `jekyll_bu
     </span>
 </div>
 
+I can also serve the site (if I am use localstorage etc and need domain to be consistent)
+```
+sudo docker run -p 4000:4000 -rm -v $(pwd):/srv/jekyll jekyll-debian
+```
+Saving any changes will even dynamically reload the served content!
+
 Overall I have found the experience using Jekyll from a Docker container to be very pleasant. My site is pushed to git whenever I have it at a stable point I'm satisfied with, and I can remake the Docker container for jekyll building very easily if my dev machine hard drive were to fail. If I need to work on it on a different machine, so long as I have access to docker, I can do so. 
 
 I might make another post on actually designing the tagging system for my blog, but Jekyll made it so simple that it may not warrant it.
