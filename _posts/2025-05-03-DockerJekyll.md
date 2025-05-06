@@ -22,37 +22,27 @@ I knew I wanted to use a static site generator so that I could host on github pa
 My intention was to make a very small and lightweight site, so I was looking for the simplest static generator I could find. I wanted something with few dependencies and a very simple and quick to learn templating syntax. Jekyll with Liquid offered this, and the speed of static compilation was not going to be a major concern for me so I discarded the argument. Another downside I found to picking Hugo was the limited documentation, community and support. 
 
 <div class="table-wrapper">
-    <table>
-        <thead>
-            <tr>
-                <th>Feature</th>
-                <th>Jekyll</th>
-                <th>Hugo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Fast compile times</td>
-                <td><i class="fa-solid fa-xmark" style="color: #d33;"></i></td>
-                <td><i class="fa-solid fa-check" style="color: #3c3;"></i></td>
-            </tr>
-            <tr>
-                <td>Well documented</td>
-                <td><i class="fa-solid fa-check" style="color: #3c3;"></i></td>
-                <td><i class="fa-solid fa-xmark" style="color: #d33;"></i></td>
-            </tr>
-            <tr>
-                <td>Simple template system</td>
-                <td><i class="fa-solid fa-check" style="color: #3c3;"></i></td>
-                <td><i class="fa-solid fa-xmark" style="color: #d33;"></i></td>
-            </tr>
-            <tr>
-                <td>Few requirements</td>
-                <td><i class="fa-solid fa-check" style="color: #3c3;"></i></td>
-                <td><i class="fa-solid fa-check" style="color: #3c3;"></i></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="comparison-grid">
+        <div class="header">Feature</div>
+        <div class="header">Jekyll</div>
+        <div class="header">Hugo</div>
+        <!---->
+        <div>Fast compile times</div>
+        <div><i class="fa-solid fa-xmark" style="color: #d33;"></i></div>
+        <div><i class="fa-solid fa-check" style="color: #3c3;"></i></div>
+        <!---->
+        <div>Well documented</div>
+        <div><i class="fa-solid fa-check" style="color: #3c3;"></i></div>
+        <div><i class="fa-solid fa-xmark" style="color: #d33;"></i></div>
+        <!---->
+        <div>Simple template system</div>
+        <div><i class="fa-solid fa-check" style="color: #3c3;"></i></div>
+        <div><i class="fa-solid fa-xmark" style="color: #d33;"></i></div>
+        <!---->
+        <div>Few requirements</div>
+        <div><i class="fa-solid fa-check" style="color: #3c3;"></i></div>
+        <div><i class="fa-solid fa-check" style="color: #3c3;"></i></div>
+    </div>
 </div>
 
 Admittedly I did not spend a particularly long time weighing up the pros & cons of the two, and this is merely what I scraped together after ten minutes on the internet. I wish I could pretend that some deeper analysis went on, but it really came down to asking "What is the lowest effort to use?" and initially the answer seemed to be Jekyll. *subtle foreshadowing*
@@ -111,7 +101,10 @@ sudo docker run --rm -v "$PWD":/srv/jekyll jekyll-debian jekyll build
 By mapping my current working directory into the container at /srv/jekyll and setting the container working dir as /srv/jekyll it means that I can run the build command from any repo where I am making a jekyll site, and the output will be written from the container into my host fs. 
 
 I ended up writing a simple function into my bash.bashrc to make this *even easier and more convenient*
-```Bash   
+
+<div class="table-wrapper">
+
+{% highlight shell %}
 # jekyll builder
 jekyll_build() {
     local site_path="$1"
@@ -126,7 +119,12 @@ jekyll_build() {
         jekyll-debian \
         jekyll build
 }
-```
+{% endhighlight %}
+    <span class="caption">
+        jekyll_build command for quick rebuilding
+    </span>
+</div>
+
 
 Now I can build any dir at will by running `jekyll_build {path}` e.g. `jekyll_build .` and I get my built site written to the /_site/ folder
 

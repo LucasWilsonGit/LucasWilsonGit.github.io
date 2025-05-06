@@ -1,0 +1,19 @@
+---
+layout: default
+title: Tags
+---
+
+<h1 style="margin-bottom: 1.225rem;">{{ page.title }}</h1>
+<hr>
+
+{% assign tags = site.tags | sort %}
+{% for tag in tags %}
+<h2>{{ tag[0] }}:</h2>
+<ul>
+    <li>
+        {% for post in tag[1] %}
+        {{ post.date | date: "%B %d, %Y" }}: <a href="{{ post.url }}" style="text-decoration: underline;">{{ post.title }}</a>
+        {% endfor %}
+    </li>
+</ul>
+{% endfor %}

@@ -4,3 +4,12 @@ sass:
     - assets/css
     - _sass
 baseurl: ""#/home/lwilson/Development/jekyll/LucasWilsonGit.github.io/_site"
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    guess_lang: true
+    css_class: highlight
+    enable_pygments: true
+    use_span: true

@@ -182,12 +182,11 @@ body {
 .table-wrapper {
     background-color: var(--surface);
     border-collapse: collapse;
+    border-spacing: 0;
     width: fit-content;
     margin: 2rem auto;
     padding: 1rem;
-    box-shadow: 5px 2px 5px rgba(0, 0, 0, 0.5);
     vertical-align: center;
-    text-align: center;
 
     img {
         max-width: 100%;
@@ -203,38 +202,41 @@ body {
         font-size: .8rem;
         text-align: center;
         width: 100%;
+        display: block;
     }
 
-    th, td {
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 0;
+        background-color: var(--surface-dark);
+        width: fit-content;
+        box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        border-bottom: 1px solid var(--surface-dark);
+    }
+    
+    .comparison-grid > div {
+        background-color: var(--surface);
         padding: 0.75rem 1.25rem;
-        border-left: 1px solid var(--muted);
-        border-top: 1px solid var(--muted);
+        text-align: center;
+        border-bottom: 1px solid var(--surface-dark);
     }
-
-    th {
+    
+    .comparison-grid > .header {
         background-color: var(--surface-dark);
         font-weight: bold;
-    }
-    
-    tr {
-        &:last-child td {
-            border-bottom: 1px solid var(--muted);
-        }
-    }
-    
-    tr td:last-child, tr th:last-child {
-        border-right: 1px solid var(--muted);
-    }
-    
-    td {
         text-align: center;
     }
-
-    td:first-child {
+    
+    .comparison-grid > div:nth-child(3n+1) {
         text-align: left;
     }
 }
 
 .blog-section-header {
     margin-top: 3rem;
+}
+
+figure.highlight {
+    margin: 0;
 }
