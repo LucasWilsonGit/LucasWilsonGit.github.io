@@ -4,12 +4,8 @@ title: Home
 ---
 {::options parse_block_html="true" /}
 
-<h1>Index</h1>
-
-Here you may find some of my latest posts, and a complete tag list.
-
 <div class="posts-feed">
-  <h2>Recent Posts</h2>
+  <h2>Recent Posts:</h2>
   {% for post in site.posts limit:5 %}
 
 <div class="post-item">
@@ -25,6 +21,8 @@ Here you may find some of my latest posts, and a complete tag list.
   {% endfor %}
 </div>
 
+<!--
+
 <h2>Tags</h2>
 
 {%- assign sortedtags = site.tags | sort -%}
@@ -38,3 +36,5 @@ Here you may find some of my latest posts, and a complete tag list.
 {%- endfor -%}
 </ul>
 {%- endfor -%}
+
+-->

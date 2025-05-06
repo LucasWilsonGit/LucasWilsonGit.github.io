@@ -6,13 +6,17 @@
         <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+        <script rel="text/javascript" src="{{ site.baseurl }}/assets/js/themes.js"></script>
     </head>
     <body>
+        <div class="page-container">
 
-        {% include sidebar.html %}
-    
-        <div class="main-content">
-            {{ content }}
+            {% include sidebar.html %}
+        
+            <div class="main-content">
+                {{ content }}
+            </div>
         </div>
     </body>
 </html>

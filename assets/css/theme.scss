@@ -1,8 +1,21 @@
 // Color palette
-$background: #121212;
-$surface: #1e1e1e;
-$text: #d0d0d0;
-$text-link: #ffffff;
-$muted: #aaa;
-$accent: #00bcd4; // soft cyan
-$link-hover: lighten($accent, 20%);
+[data-theme="light"] {
+    --background: #e8e8e8;
+    --surface: #D0D0D0;
+    --surface-dark: darken(--surface, 5%);
+    --text: #222;
+    --text-link: #000000;
+    --muted: #666;
+    --accent: #007acc;
+    --link-hover: lighten(--accent, 20%);
+}
+
+[data-theme="dark"] {
+    --background: #121212;
+    --surface: #1e1e1e;
+    --text: #d0d0d0;
+    --text-link: #ffffff;
+    --muted: #aaa;
+    --accent: #00bcd4; // soft cyan
+    --link-hover: lighten(--accent, 20%);
+}
