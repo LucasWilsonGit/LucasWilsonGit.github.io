@@ -1,0 +1,127 @@
+.sidebar {
+    width: 220px;
+    min-height: calc(100vh - 1.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--surface);
+    padding: 1.5rem;
+    padding-bottom: 0;
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        
+        .github-link {
+            display: inline-block;
+            margin-right: 0.5rem;
+            color: var(--text-link);
+            transition: color 0.2s ease-in-out;
+    
+            &:hover {
+            color: var(--accent);
+            }
+        }
+    
+        img.github-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; // Makes the avatar round
+            margin-right: 0.5rem; // Space between the avatar and name
+            object-fit: cover; // Ensures the image doesn't stretch
+        }
+
+        .github-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            line-height: 1.2;
+    
+            .github-name {
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--text);
+            }
+        
+            .github-title {
+                font-size: 0.75rem;
+                color: var(--muted);
+                margin-top: 0.15rem;
+            }
+        }
+    }
+
+    .sidebar-icons {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        
+        .icon-link {
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        
+            &:hover {
+                color: var(--accent);
+                text-shadow: 0 0 6px var(--accent);
+            }
+        
+            &.theme-toggle {
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+    
+    button {
+        background: none;
+        border: none;
+        outline: none;
+        padding: 5px;
+        margin: 0;
+        color: inherit;
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+
+        &:hover {
+            color: var(--accent);
+            text-shadow: 0 0 6px var(--accent);
+        }
+    }
+
+    h1 {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    margin-top: 10px;
+    color: var(--muted);
+    }
+
+    nav {
+        flex-grow: 1;
+
+        a {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+    
+            &:hover {
+                color: var(--accent);
+                text-shadow: 0 0 8px var(--accent);
+            }
+        }
+    }
+
+    .mobileonly {
+        display: none;
+    }
+
+    .sidebar-footer {
+        font-size: 0.8rem;
+        margin-bottom: 1rem;
+    }
+}
