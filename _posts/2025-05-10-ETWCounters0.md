@@ -13,7 +13,7 @@ tags:
 
 A few years ago I wrote a [C++ wrapper for the Event Tracing for Windows (ETW) library](https://github.com/LucasWilsonGit/CPUBench). At the time there were no existing open source C++ wrappers for this API, and I wanted to be able to collect hardware performance counters without having to install a test-signed kernel driver.
 
-At the time, the API for implementing ETW Controllers and ETW Consumers was poorly documented, and quite non-intuitive. I found working with ETW to be extremely frustrating. Wondering whether it was just me, I was quite pleased to find that reputable developers had also had a bad experience with this library. There is a [Casey Muratori article on ETW which I referenced when writing my first implementation](https://caseymuratori.com/blog_0025) which shows his near-contempt for the design of the API. 
+At the time, the API for implementing ETW Controllers and ETW Consumers was poorly documented, and quite non-intuitive. I found working with ETW to be extremely frustrating. Wondering whether it was just me, I was quite pleased to find that reputable developers had also had a bad experience with this library. There is a [Casey Muratori article on ETW which I referenced when writing my first implementation](https://web.archive.org/web/20250506052608/https://caseymuratori.com/blog_0025) which shows his near-contempt for the design of the API. 
 
 <div class="blog-section-header"> 
     <h2 style="margin-bottom: 0;"> Revisiting ETW </h2>
@@ -38,7 +38,7 @@ There were a few things I wanted to do "properly" this time around:
 - I would separate orchestrating the trace from the benchmarking controls as much as possible. 
 - The Dependency Inversion could also be leveraged to make testing my new solution simpler, and having better tests will make future development work easier by catching regressions.
 - I would use CMake for my build system rather than Visual Studio solutions. Admittedly, I'm still using MSVC to compile, but at least this way I could compile on MinGW if I wanted to.
-- I would have a lower event loss rate by properly dealing with the timestamps in events, rather than immediately discarding events as soon as I "pause" tracing. This is because events are buffered within ETW and so we may process them significantly later than when they were emitted.
+
 
 <div class="table-wrapper">
     <div class="comparison-grid">
@@ -79,3 +79,76 @@ There were a few things I wanted to do "properly" this time around:
         <div><i class="fa-solid fa-check" style="color: #3c3;"></i> Correctly handles ETW buffers, fewer losses</div>
     </div>
 </div>
+
+
+
+
+
+<div class="blog-section-header"> 
+    <h2 style="margin-bottom: 0;"> Decoupling Platform Specific Details </h2>
+    <h5 style="margin-top: 0;"> Improved Portability + Testability </h5>
+</div>
+
+<div class="blog-section-header"> 
+    <h2 style="margin-bottom: 0;"> Better Trace Controller Implementation </h2>
+    <h5 style="margin-top: 0;"> What I've learned about ETW. </h5>
+</div>
+
+<div class="blog-section-header"> 
+    <h2 style="margin-bottom: 0;"> Cross Platform Build System </h2>
+    <h5 style="margin-top: 0;"> Or at least, something which can become one. </h5>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="blog-section-header"> 
+    <h2 style="margin-bottom: 0;"> Future Work </h2>
+    <h5 style="margin-top: 0;"> What's next for my library? </h5>
+</div>
+
+<h4> Proper Event Timestamping </h4>
+
+ETW buffers events internally until they are consumed. My old implementation was pretty easy to end up causing bluescreens with depending on which counters were activated, and how slow the consumer was. These events may be buffered for a while before a consumer pulls them. 
+
+Here is a  microsoft documentation picture that somewhat fails to intuitively convey this detail, but can help understand the idea:
+![lol](image.png)
+
+Here is an even funnier version of the same picture, where they've labelled their lines incorrectly. The background of the image is also transparent, so [on a dark page the text becomes almost invisible in the learn.microsoft page it comes from.](https://web.archive.org/web/20240314001907/https://learn.microsoft.com/en-us/windows-hardware/test/weg/instrumenting-your-code-with-etw)
+![LOL!!](image-1.png)
+
+I previously supported "pausing" benchmarks, where consumed events would be discarded if an atomic bool was set. This did not consider the timestamp within the events.
+
+I would like to have a lower event loss rate by properly dealing with the timestamps in events. Instead of immediately discarding events as soon as I "pause" tracing, I should consider the timestamp I paused at, and selectively discard only events which the producer emitted after I entered the paused state. 
+
+<h4> An extra layer of buffering </h4> 
+
+I'd like to move the counter tracking out of the platform specific code, and have my cross-platform code have it's own buffer of events which would be "de-platformed" but still have critical information. Instead of uint32_t profile_source, I'd have a counter_type counter which would be meaningful even if the source id changed (Highly unlikely). This may potentially give me room to do "remote" tracing in the future.
+
+I'm always going to be a realtime consumer of the performance counter ETW events, but I would like to be able to also serialize them into a custom format. This would also be reusable for "remote" tracing. I could then write them into a file, and this may enable averaging results across multiple executions, or comparing results before/after changes for some kind of CI/CD rejection of bad updates which might harm cache-locality etc. 
+
+<h4> Symbol Resolution </h4>
+
+Since ETW events give us the instruction pointer when the counter overflow occurred, if I can get this to resolve against debug symbols in the binary, I could actually include that information in some kind of per-file histogram where overflows are bucketed by line number, or by the enclosing function. This would be a move towards equivalent functionality with perf.  
+
+<h4> Support other events </h4>
+
+The usecase everyone else generally has for writing a realtime ETW consumer is collecting stack traces on context switches. I'd also like to be able to get events for memory page faults and syscalls. 
