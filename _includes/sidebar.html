@@ -30,7 +30,6 @@
 
     <!-- <hr style="width: 100%;"> -->
 
-    <h1>This site is my blog for development projects.</h1>
 
     <nav>
         <a href="{{ site.baseurl }}/index.html">
@@ -52,7 +51,20 @@
         </button>
     </nav>
 
+    <div class="desktop-only" id="blog-chapters" style="display: none;">
+        <h2>Chapters</h2>
+        <hr>
+        <nav id="nav-chapters">
+        </nav>
+    </div>
+
+    <div class="foot-spacer"></div>
+
     <footer class="sidebar-footer">
         &copy; {{ 'now' | date: "%Y" }} Lucas Wilson
     </footer>
+
+    <div id="sidebar-progress-bar">
+
+    </div>
 </div>

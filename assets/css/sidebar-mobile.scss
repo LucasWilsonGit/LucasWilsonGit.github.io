@@ -128,6 +128,8 @@
             flex-grow: 1;
 
             a {
+                margin-left: unset;
+                width: unset;
                 color: var(--text);
                 text-decoration: none;
                 transition: all 0.2s ease-in-out;
@@ -144,11 +146,27 @@
         .mobileonly {
             display: block;
         }
+        
+        .desktop-only {
+            display: none;
+        }
 
         .sidebar-footer {
             display: none;
             font-size: 0.8rem;
             margin-bottom: 1rem;
         }
+
+        #sidebar-progress-bar {
+            min-height: 2px;
+            position: absolute;
+            top: 100%;
+            left: 0px;
+            width: 100%;
+            background-color: var(--accent);
+            display: none;
+        }
     }
+
+
 }
