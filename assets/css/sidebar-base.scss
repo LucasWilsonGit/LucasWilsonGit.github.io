@@ -1,6 +1,18 @@
-.sidebar {
+.sidebar-placeholder {
     width: 220px;
     min-height: calc(100vh - 1.5rem);
+    padding: 1.5rem;
+    padding-bottom: 0;
+    background-color: var(--surface);
+    flex-shrink: 0;
+}
+
+.sidebar {
+    width: 220px;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -84,6 +96,8 @@
         color: inherit;
         cursor: pointer;
         transition: color 0.2s ease-in-out;
+        font-family: inherit;
+        font-size: inherit;
 
         &:hover {
             color: var(--accent);
