@@ -1,0 +1,23 @@
+/* Make sure the container is a positioning context */
+#benchmark3d {
+  position: relative !important;
+  display: inline-block; /* keeps container sizing tight if needed */
+}
+
+#benchmark3d > #toggle-scale {
+  position: absolute;
+  bottom: 10px;   /* push up from bottom */
+  right: 10px;    /* push in from right */
+  z-index: 1000;  /* stay above chart */
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#trial-size-slider {
+  width: 100%;
+  margin-top: 10px;
+}

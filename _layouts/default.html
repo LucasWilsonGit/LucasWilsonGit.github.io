@@ -16,6 +16,13 @@
             <script src="{{ script }}"></script>
         {% endfor %}
 
+        {% if page.custom_styles %}
+            {% assign post_stub = page.name | split: '.' | first %}
+            {% for style_file in page.custom_styles %}
+                <link rel="stylesheet" href="{{ site.baseurl }}/assets/posts/{{ post_stub }}/{{ style_file }}">
+            {% endfor %}
+        {% endif %}
+
     </head>
     <body>
         <div class="page-container">
