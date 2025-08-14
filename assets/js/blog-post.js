@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const rect = header.getBoundingClientRect();
             
             if (rect.top <= threshold) {
-                lastVisibleIndex = index;J
+                lastVisibleIndex = index;
             }
         });
 

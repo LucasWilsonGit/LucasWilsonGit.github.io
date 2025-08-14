@@ -17,7 +17,32 @@
   font-size: 14px;
 }
 
+slider-wrapper {
+  margin-top: 12px;
+}
+
 #trial-size-slider {
-  width: 100%;
-  margin-top: 10px;
+  margin: 0 auto;
+  width: 90%; /* match chart width */
+}
+
+/* Default handle reset */
+.noUi-handle {
+  width: 16px;
+  height: 24px;
+  border-radius: 0;
+  background: #3498db;
+  border: 1px solid #ccc;
+}
+
+/* Left handle = only left half visible */
+.noUi-handle-lower {
+  clip-path: inset(0 50% 0 0);  /* left half */
+  background: #3498db;
+}
+
+/* Right handle = only right half visible */
+.noUi-handle-upper {
+  clip-path: inset(0 0 0 50%);  /* right half */
+  background: #e74c3c;
 }
