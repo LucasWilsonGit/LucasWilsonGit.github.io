@@ -6,8 +6,8 @@
 
 #benchmark3d > #toggle-scale {
   position: absolute;
-  bottom: 10px;   /* push up from bottom */
-  right: 10px;    /* push in from right */
+  top: 0px;   /* push up from bottom */
+  left: 10px;    /* push in from right */
   z-index: 1000;  /* stay above chart */
   padding: 6px 12px;
   background: rgba(255, 255, 255, 0.85);
@@ -23,7 +23,7 @@ slider-wrapper {
 
 #trial-size-slider {
   margin: 0 auto;
-  width: 90%; /* match chart width */
+  width: 100%; /* match chart width */
 }
 
 /* Default handle reset */

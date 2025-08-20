@@ -42,7 +42,7 @@ Once the dataset no longer fits in the CPU cache then performance of the linear 
 The extra time taken by comparisons and pipeline-dependencies in the binary search may not beat out a SIMD optimized linear search for throughput, nor even latency. [**Here is a brilliant article which demonstrates this**](http://archive.today/iipPV), comparing optimized linear and binary search through contiguous numbers. This cannot be extrapolated to conclusions on searching strings, but shows the principle that there is a trade-off between time saved avoiding cache misses vs the pure brute force throughput of an optimized linear search. The cost of cache misses scales signficantly with the amount of data you are dealing with. 
 
 <div class="blog-section-header"> 
-    <h2 style="margin-bottom: 0;"> Using multiple Sorted Arrays for Planar Data </h2>
+    <h2 style="margin-bottom: 0;"> Trading Complexity for Spatial Locality </h2>
     <h5 style="margin-top: 0;"> Adding some complexity for improved performance, and measuring results.     </h5>
 </div>
 The benefits of being contiguous are largely in the linear iteration speed, there will not be any unnecessary cache misses, this is often very desirable for datasets you will sweep through to update each element. This is often taken advantage of in ECS implementations, which go even further and prefer planar data and iterating components for optimum cache usage. Memory is loaded into the cache in fixed size blocks called cache lines, often multiple cache lines are pulled into cache assuming that nearby memory will be used consecutively.
@@ -332,7 +332,7 @@ Something extra to look at is the performance profile once we go beyond our RAM 
     </span>
 </div>
 
-It's not at all rigorous to comment on a single test run without multiple repetitions and various search lengths to establish trends, but as a rather meaningless comment on a baseline of 25 searches through a larger-than-RAM dataset, the difference between planar and interleaved seems to be even larger. This is probably because again, the Planar uses memory more efficiently so we deal with less misses going out to disk which is super costly even compared to missing cache and going to RAM. I have SSD storage so still pretty fast.  
+It's not rigorous to comment on a single test run, but as a single datapoint of 25 searches through a larger-than-RAM dataset, the difference between planar and interleaved seems to be even larger though still around an order of magnitude. This is probably because again, the Planar uses memory more efficiently so we deal with less misses going out to disk which is super costly even compared to missing cache and going to RAM. I have SSD storage so still pretty fast meaning it "only" took me half an hour to run a single trial for a ~62 GiB dataset. The search is of course not a particularly optimised linear search and could be made *much* faster but that is not the point, so long as the same linear search for the two compared data layouts is used the results should be valid to compare them. 
 
 <b>Note:</b>
 
